@@ -1,8 +1,5 @@
 <template>
 	<div class="login">
-		<h2 class="active">sign in</h2>
-
-		<h2 class="nonactive">sign up</h2>
 		<form>
 			<input type="text" class="text" name="username" />
 			<span>username</span>
@@ -19,6 +16,7 @@
 			<label for="checkbox-1-1">Keep me Signed in</label>
 
 			<button class="signin">Sign In</button>
+      <button class="signin">register</button>
 
 			<hr />
 
