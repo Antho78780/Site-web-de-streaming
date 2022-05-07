@@ -2,7 +2,14 @@
 	<div class="login">
 		<form>
 			<input v-model="pseudo" type="text" class="text"/>
-			<span class="text-primary">username</span>
+			<span class="text-primary">Pseudo</span>
+			
+			<br />
+
+			<br />
+
+			<input v-model="email" type="text" class="text"/>
+			<span  class="text-primary">Email</span>
 
 			<br />
 
@@ -11,66 +18,77 @@
 			<input v-model="password" type="password" class="text"/>
 			<span  class="text-primary">password</span>
 			<br />
-			<p class="text-danger">{{msgError}}</p>
-		
-			<button @click="connecter" class="signin">Sign In</button>
+
+			<br />
+
+			<input v-model="confirmPassword" type="password" class="text"/>
+			<span  class="text-primary">Confirm password</span>
+			<p class="text-danger">{{mdpError}}</p>
+			<p class="text-danger">{{emailOrPseudoError}}</p>
+			<p class="text-danger">{{errorChamp}}</p>
 			<button @click="enregistrer" class="signin">register</button>
+			<button @click="connecter" class="signin">Sign In</button>
 		</form>
 	</div>
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			pseudo: "",
-			password: "",
-			msgError: "",
-		};
-	},
+	export default {
+		data() {
+			return {
+				pseudo: "",
+				email: "",
+				password: "",
+				confirmPassword: "",
+				mdpError : "",
+				errorChamp: "",
+				emailOrPseudoError: ""
 
-	methods: {
-		connecter() {
-			const pseudo = this.pseudo
-			const mdp = this.password
-
-			const objetUsers = {pseudo, mdp}
-			console.log(objetUsers)
-			fetch("http://localhost:3000/login", {
-				method: "POST",
-				headers: {
-					"Accept": "application/json",
-					"Content-type" : "application/json"
-				},
-				body: JSON.stringify(objetUsers)
-			})
-			.then(res => res.json())
-			.then((data) => {
-				console.log(data)
-				if(data.message) {
-					window.location.href = "/#/"
-				}
-				else {
-					this.msgError = data.error
-				}
-			})
-			
+			}
 		},
-		enregistrer() {
-			window.location.href = "/?#/register"
+		methods: {
+			connecter() {
+				window.location.href = "/?#/login"
+			},
+			enregistrer() {
+				const pseudo = this.pseudo;
+				const email = this.email;
+				const mdp = this.password;
+				const confirmMdp = this.confirmPassword;
+				if(mdp == confirmMdp && email) {
+					this.mdpError = "";
+					const objetRegister = {pseudo, email, mdp}
+					fetch("http://localhost:3000/register", {
+						method: "POST",
+						headers: {
+							"Accept": "application/json",
+							"Content-type" : "application/json"
+						},
+						body: JSON.stringify(objetRegister)
+					})
+					.then(res => res.json())
+					.then((data) => {
+						console.log(data)
+						if(data.message) {
+							window.location.href = "/#/"
+						}
+						else {
+							this.emailOrPseudoError = data.error
+						}
+					})
+				}
+				else if(email == "" || pseudo == "" || mdp == "" || confirmMdp == "") {
+					this.errorChamp = "Champs manquants"
+				}
+				else if(mdp != confirmMdp) {
+					this.mdpError = "Les mots de passes ne correspondent pas"
+				}
+			}
 		}
 	}
-};
 </script>
 
 <style scoped>
-.signin {
-	background-color: #d3d3d3;
-	font-family: 'Montserrat', sans-serif;
-	color: #fff;
-	font-size: 14px;
-	letter-spacing: 1px;
-}
 
 .login {
 	width: 1300px;

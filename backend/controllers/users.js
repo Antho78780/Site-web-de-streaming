@@ -2,8 +2,9 @@ const modelUsers = require("../models/users");
 const bcrypt = require("bcrypt");
 
 exports.login = (req, res) => {
+    console.log(req.body.pseudo)
     modelUsers.findOne({
-        email: req.body.email
+        pseudo: req.body.pseudo
     })
     .then((user) =>{
         if(user) {
@@ -12,14 +13,15 @@ exports.login = (req, res) => {
                     res.status(200).json({message: "Compte connecté"})
                 }
                 else {
-                    res.status(400).json({error: "compte inccorect"})
+                    res.status(400).json({error: "mot de passe inccorect"})
                 }
             })
         }
         else {
-            res.status(400).json({error: "Email incorrect"})
+            res.status(400).json({error: "username incorrect"})
         }
     })
+    .catch(err => res.status(err))
 } 
 
 exports.register = (req, res) => {
@@ -29,8 +31,17 @@ exports.register = (req, res) => {
             email: req.body.email,
             password: hash
        })
-       .then((createUser) => {
-           res.status(201).json(createUser);
+       .then((user) => {
+           console.log(user)
+           res.status(201).json({message: "Compte enregistrer"});
+       })
+       .catch((errUser) => {
+           if(errUser.errors.pseudo) {
+            res.status(404).json({error: "Pseudo deja utilisé"})
+           }
+           else {
+               res.status(404).json({error: "Email deja utilisé"})
+           }
        })
     })
 }

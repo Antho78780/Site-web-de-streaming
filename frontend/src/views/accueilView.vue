@@ -1,15 +1,13 @@
 <template>
 	<div id="shell">
 		<div id="header">
-			<h1 id="logo"><a href="#">MovieHunter</a></h1>
 			<div id="navigation">
 				<ul>
-					<li><h1 class="active">MovieHunter</h1></li>
-					<li><a href="#">NEWS</a></li>
-					<li><a href="#">IN THEATERS</a></li>
-					<li><a href="#">COMING SOON</a></li>
-					<li><a href="#">CONTACT</a></li>
-					<li><a href="#">ADVERTISE</a></li>
+					<h1 class="active">MovieHunter</h1>
+					<li  class="flex_connect">
+						<button @click="connecter" class="connect btn btn-primary">Se connecter</button>
+						<button @click="enregistrer" class="connect btn btn-primary">S'enreigstrer</button>
+					</li>
 				</ul>
 			</div>
 			<div id="sub-navigation">
@@ -22,18 +20,9 @@
 				<div id="search">
 					<form action="#" method="get" accept-charset="utf-8">
 						<label for="search-field">SEARCH</label>
-						<input
-							type="text"
-							name="search field"
-							value="Enter search here"
-							id="search-field"
-							class="blink search-field"
-						/>
-						<input
-							type="submit"
-							value="GO!"
-							class="search-button"
-						/>
+						<input type="text" name="search field" value="Enter search here" id="search-field"
+							class="blink search-field" />
+						<input type="submit" value="GO!" class="search-button" />
 					</form>
 				</div>
 			</div>
@@ -43,12 +32,8 @@
 				<div class="box">
 					<div class="movie">
 						<div class="movie-image">
-							<span class="play"
-								><span class="name">X-MAN</span></span
-							>
-							<a href="#"
-								><img src="" alt=""
-							/></a>
+							<span class="play"><span class="name">X-MAN</span></span>
+							<a href="#"><img src="" alt="" /></a>
 						</div>
 						<div class="rating">
 							<p>RATING</p>
@@ -65,45 +50,64 @@
 </template>
 
 <script>
-export default {
-	data() {
-		return {};
-	},
-};
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			connecter() {
+				window.location.href = "/?#/login"
+			},
+			enregistrer() {
+				window.location.href = "/?#/login"
+			}
+		}
+		
+	
+	}
 </script>
 
 <style scoped>
-* {
-	margin: 0;
-	padding: 0;
-	outline: 0;
+.active{
+	text-align: center;
 }
-body {
-	font-size: 12px;
-	line-height: 1.3;
-	font-family: Arial, Helvetica, Sans-Serif;
-	color: #ccc;
+
+.flex_connect {
+	display: flex;
+	justify-content: right;
 }
+.connect {
+	margin: 10px;
+}
+
+
 a {
 	color: #e7b038;
 	text-decoration: underline;
 	cursor: pointer;
 }
+
 a:hover {
 	text-decoration: none;
 }
+
 a img {
 	border: 0;
 }
+
 input,
 textarea,
 select {
 	font-size: 12px;
 	font-family: Arial, Helvetica, sans-serif;
 }
+
 textarea {
 	overflow: auto;
 }
+
 .cl {
 	display: block;
 	height: 0;
@@ -112,51 +116,62 @@ textarea {
 	text-indent: -4000px;
 	clear: both;
 }
+
 .notext {
 	font-size: 0;
 	line-height: 0;
 	text-indent: -4000px;
 }
+
 .left,
 .alignleft {
 	float: left;
 	display: inline;
 }
+
 .right,
 .alignright {
 	float: right;
 	display: inline;
 }
+
 .text-right {
 	text-align: right;
 }
+
 h2 {
 	font-size: 10px;
 	color: #f2a223;
 	font-weight: bold;
 }
+
 h3 {
 	font-size: 14px;
 	color: #fff;
 	font-weight: bold;
 }
+
 h4 {
 	font-size: 14px;
 	color: #f3b12b;
 	font-weight: bold;
 }
+
 #shell {
 	width: 980px;
 	margin: 0 auto;
 }
+
 #header {
 	position: relative;
 }
+
 h1#logo {
 	position: absolute;
 	top: 37px;
 	left: 0;
 }
+
 h1#logo a {
 	float: left;
 	width: 239px;
@@ -165,11 +180,13 @@ h1#logo a {
 	line-height: 0;
 	text-indent: -4000px;
 }
+
 .social {
 	float: right;
 	width: 160px;
 	padding-top: 11px;
 }
+
 .social span {
 	float: left;
 	display: inline;
@@ -178,15 +195,18 @@ h1#logo a {
 	line-height: 16px;
 	padding-right: 5px;
 }
+
 .social ul {
 	list-style: none;
 }
+
 .social ul li {
 	float: left;
 	display: inline;
 	width: 16px;
 	padding-right: 2px;
 }
+
 .social ul li a {
 	float: left;
 	display: inline;
@@ -196,39 +216,37 @@ h1#logo a {
 	line-height: 0;
 	text-indent: -4000px;
 }
+
 .social ul li a.facebook {
 	background-position: -18px 0;
 }
+
 .social ul li a.vimeo {
 	background-position: -36px 0;
 }
+
 .social ul li a.rss {
 	background-position: -54px 0;
 }
+
 #navigation {
-	float: right;
-	clear: right;
 	padding-top: 28px;
 	padding-bottom: 47px;
 }
-#navigation ul {
-	list-style: none;
-}
-#navigation ul li {
-	float: left;
-	display: inline;
-	padding-left: 29px;
-}
+
+
 #navigation ul li a {
 	font-size: 14px;
 	font-weight: bold;
 	color: #fff;
 	text-decoration: none;
 }
-#navigation ul li a.active,
-#navigation ul li a:hover {
+
+ ul li a.active,
+ ul li a:hover {
 	color: #d91d2a;
 }
+
 #sub-navigation {
 	display: block;
 	clear: right;
@@ -236,14 +254,17 @@ h1#logo a {
 	border-bottom: 1px dashed #666;
 	padding: 8px 0;
 }
+
 #sub-navigation ul {
 	list-style: none;
 }
+
 #sub-navigation ul li {
 	float: left;
 	display: inline;
 	padding-right: 23px;
 }
+
 #sub-navigation ul li a {
 	font-size: 14px;
 	font-weight: bold;
@@ -251,13 +272,16 @@ h1#logo a {
 	line-height: 24px;
 	text-decoration: none;
 }
+
 #sub-navigation ul li a:hover {
 	text-decoration: underline;
 }
+
 #search {
 	width: 346px;
 	margin: 0 0 0 auto;
 }
+
 #search label {
 	float: left;
 	display: inline;
@@ -267,6 +291,7 @@ h1#logo a {
 	line-height: 24px;
 	padding-right: 6px;
 }
+
 #search .search-field {
 	width: 238px;
 	border: 1px solid #413e3e;
@@ -274,6 +299,7 @@ h1#logo a {
 	color: #787878;
 	padding: 2px 0 2px 2px;
 }
+
 #search .search-button {
 	font-size: 14px;
 	font-weight: bold;
@@ -282,38 +308,46 @@ h1#logo a {
 	color: #fff;
 	cursor: pointer;
 }
+
 #main {
 	border-bottom: 1px dashed #413e3e;
 }
+
 .box {
 	width: 980px;
 	border-bottom: 1px dashed #413e3e;
 	padding-bottom: 21px;
 }
+
 .box .head {
 	width: 980px;
 	padding-top: 14px;
 	padding-bottom: 11px;
 }
+
 .box .head h2 {
 	float: left;
 	display: inline;
 }
+
 .box .movie {
 	width: 152px;
 	float: left;
 	padding-right: 12px;
 }
+
 .movie-image {
 	float: left;
 	width: 152px;
 	height: 214px;
 	position: relative;
 }
+
 .movie-image img {
 	width: 152px;
 	height: 214px;
 }
+
 .movie-image a {
 	float: left;
 	display: inline;
@@ -322,6 +356,7 @@ h1#logo a {
 	position: relative;
 	z-index: 2;
 }
+
 .play {
 	position: absolute;
 	top: 0;
@@ -333,6 +368,7 @@ h1#logo a {
 	cursor: pointer;
 	display: none;
 }
+
 .movie span.name {
 	font-weight: bold;
 	color: #fff;
@@ -341,26 +377,31 @@ h1#logo a {
 	padding-top: 160px;
 	display: block;
 }
+
 .box .last {
 	padding: 0;
 }
+
 .rating {
 	float: left;
 	width: 152px;
 	padding-top: 8px;
 }
+
 .rating p {
 	float: left;
 	font-size: 10px;
 	color: #fff;
 	font-weight: bold;
 }
+
 .rating .stars {
 	float: left;
 	width: 60px;
 	height: 11px;
 	margin-left: 2px;
 }
+
 .rating .stars-in {
 	width: 48px;
 	display: inline;
@@ -370,87 +411,113 @@ h1#logo a {
 	line-height: 0;
 	text-indent: -4000px;
 }
+
 .comments {
 	padding-left: 12px;
 	float: right;
 }
+
 #news {
 	width: 460px;
 	float: left;
 }
+
 #news .head {
 	width: 460px;
 	padding-top: 11px;
 	padding-bottom: 14px;
 }
+
 #news h3,
 #coming h3 {
 	float: left;
 }
+
 #coming {
 	width: 490px;
 	float: left;
 	padding-left: 30px;
 }
+
 #coming .head {
 	width: 490px;
 	padding-top: 11px;
 	padding-bottom: 14px;
 }
+
 #coming .head strong {
 	color: #ff361a;
 }
+
 #coming .content {
 	min-height: 130px;
 	height: auto !important;
 	height: 130px;
 	padding-bottom: 20px;
 }
+
 #coming .content h4 {
 	padding-bottom: 3px;
 }
+
 .content {
 	padding-bottom: 28px;
 }
+
 .content .date {
 	font-size: 10px;
 	color: #fff;
 }
+
 .content img {
 	float: left;
 	width: 68px;
 	padding-right: 8px;
 }
+
 .content p {
 	font-size: 13px;
 	color: #fff;
 	line-height: 16px;
 }
+
 .content a {
 	font-size: 11px;
 }
+
 #footer {
 	padding: 15px 0 0 0;
 	font-size: 10px;
 }
+
 #footer,
 #footer a {
 	color: #9c9c9c;
 	text-decoration: none;
 }
+
 #footer a:hover {
 	text-decoration: none;
 }
+
 #footer p {
 	margin: 0;
 	padding: 0 0 11px 0;
 	line-height: normal;
 	white-space: nowrap;
 }
+
 #footer .lf {
 	float: left;
 }
+
 #footer .rf {
 	float: right;
 }
+</style>
+<style>
+	body {
+		width: 1600px;
+		margin: auto;
+	}
 </style>
